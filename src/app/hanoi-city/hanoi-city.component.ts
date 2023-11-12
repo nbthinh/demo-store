@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { add_district_all_list } from './hanoi-city.actions';
+import { add_district_all_list, add_district_every_element } from './hanoi-city.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +17,11 @@ export class HanoiCityComponent {
   }
   data!: string[] | string;
   ngOnInit(){
-    this.store.dispatch(add_district_all_list({ district_list: this.district_list}));
+    // this.store.dispatch(add_district_all_list({ district_list: this.district_list}));
+    for (let i = 0; i < this.district_list.length; i++) {
+      this.store.dispatch(add_district_every_element({new_district: this.district_list[i]}))
+    }
+
     this.district_observable$ = this.store.select("district")
     this.district_observable$.subscribe((x) => {
       this.data = x
