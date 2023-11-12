@@ -1,0 +1,8 @@
+<p>hanoi-city works!</p>
+<!-- <p *ngIf="district_observable$">
+    {{ district_observable$ | async }}
+</p> -->
+
+<div *ngFor="let data of district_observable$ | async">
+    {{data}}
+</div>
