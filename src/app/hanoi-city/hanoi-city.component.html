@@ -3,6 +3,14 @@
     {{ district_observable$ | async }}
 </p> -->
 
-<div *ngFor="let data of district_observable$ | async">
+<!-- <div *ngFor="let data of district_observable$ | async">
     {{data}}
-</div>
+</div> -->
+
+<ng-container>
+    <ul>
+        <li *ngFor="let district of district_observable_api$ | async">
+            Code: {{district.code}} - Name: {{ district.name }}
+        </li>
+    </ul>
+</ng-container>

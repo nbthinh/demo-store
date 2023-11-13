@@ -8,7 +8,10 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter.reducer';
 import { MyCounterComponent } from './my-counter/my-counter.component';
 import { HanoiCityComponent } from './hanoi-city/hanoi-city.component';
-import { districtReducer } from './hanoi-city/hanoi-city.reducer';
+import { HanoiCityAPI, districtReducer } from './hanoi-city/hanoi-city.reducer';
+
+import { HttpClientModule } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,13 @@ import { districtReducer } from './hanoi-city/hanoi-city.reducer';
     AppRoutingModule,
     StoreModule.forRoot({
       maccaiquan: counterReducer,
-      district: districtReducer
+      district: districtReducer,
+      district_api: HanoiCityAPI
     })
   ],
-  providers: [],
+  providers: [
+    importProvidersFrom(HttpClientModule),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
